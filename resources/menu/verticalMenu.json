@@ -1,0 +1,86 @@
+{
+  "menu": [
+    {
+      "url": "/",
+      "name": "Dashboards",
+      "icon": "menu-icon tf-icons mdi mdi-home-outline",
+      "slug": "dashboard",
+      "submenu": [
+        {
+          "url": "https://1ad067e7cd97.ngrok-free.app/admin/dashboard",
+          "name": "Main Dashboard",
+          "slug": "admin-dashboard"
+        },
+        {
+          "url": "https://1ad067e7cd97.ngrok-free.app/admin/kalender",
+          "name": "Kalender",
+          "slug": "kalender-index"
+        }
+      ]
+    },
+    {
+      "url": "https://1ad067e7cd97.ngrok-free.app/admin/dashboard",
+      "name": "Pemesanan",
+      "icon": "menu-icon tf-icons mdi mdi-cart-outline",
+      "slug": "dashboard",
+      "submenu": [
+        {
+          "url": "https://1ad067e7cd97.ngrok-free.app/admin/pemesanan",
+          "name": "Pemesanan List",
+          "slug": "pemesanan-index"
+        },
+        {
+          "url": "https://1ad067e7cd97.ngrok-free.app/admin/layanan-foto",
+          "name": "Layanan Foto",
+          "slug": "layanan-foto-index"
+        },
+        {
+          "url": "https://1ad067e7cd97.ngrok-free.app/admin/paket",
+          "name": "Paket",
+          "slug": "paket-index"
+        },
+        {
+          "url": "https://1ad067e7cd97.ngrok-free.app/admin/background",
+          "name": "Background",
+          "slug": "background-foto-index"
+        },
+        {
+          "url": "https://1ad067e7cd97.ngrok-free.app/admin/servis-tambahan",
+          "name": "Servis Tambahan",
+          "slug": "servis-tambahan-index"
+        },
+        {
+          "url": "https://1ad067e7cd97.ngrok-free.app/admin/file-sent",
+          "name": "Tipe File Sent",
+          "slug": "file-sent-index"
+        }
+      ]
+    },
+    {
+      "url": "https://1ad067e7cd97.ngrok-free.app/admin/dashboard",
+      "name": "Users",
+      "icon": "menu-icon tf-icons mdi mdi-face-agent",
+      "slug": "dashboard",
+      "submenu": [
+        {
+          "url": "https://1ad067e7cd97.ngrok-free.app/admin/users",
+          "name": "Users List",
+          "slug": "users-index"
+        }
+      ]
+    },
+    {
+      "url": "https://1ad067e7cd97.ngrok-free.app/admin/dashboard",
+      "name": "Notification",
+      "icon": "menu-icon tf-icons mdi mdi-bell",
+      "slug": "dashboard",
+      "submenu": [
+        {
+          "url": "https://1ad067e7cd97.ngrok-free.app/admin/notif",
+          "name": "Manajemen Notifikasi",
+          "slug": "notif-index"
+        }
+      ]
+    }
+  ]
+}
