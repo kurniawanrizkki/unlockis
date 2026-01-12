@@ -1,1012 +1,808 @@
-@media only screen and (max-width: 600px) {
-  .section-detail-layanan {
-    width: 100%;
-    height: fit-content;
-    padding-top: 150px;
-    padding-bottom: 100px;
-  }
-
-  .detail-layanan {
-    display: grid;
-    grid-template-columns: auto;
-    gap: 30px;
-  }
-
-  .gambar-layanan {
-    display: grid;
-    justify-content: center;
-  }
-
-  .detail {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .detail > p {
-    width: 70%;
-    font-size: 16px;
-    text-align: justify;
-  }
-
-  .detail > h1 {
-    width: 70%;
-
-    font-size: 23px;
-  }
-
-  .gambar-utama > div {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 300px;
-    height: 400px;
-    transition: ease-in-out 200ms;
-  }
-
-  .gambar {
-    display: grid;
-    justify-content: left;
-    grid-template-columns: auto auto auto auto auto;
-  }
-
-  .gambar > div {
-    width: 75px;
-    height: 75px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    cursor: pointer;
-  }
-
-  .section-paket-layanan {
-    display: grid;
-    align-items: center;
-    width: 100%;
-    height: fit-content;
-  }
-
-  .paket-layanan-list {
-    display: grid;
-    grid-template-columns: auto;
-    justify-content: center;
-  }
-  .paket {
-    background-color: #d1dfed;
-    padding: 10px;
-    width: 250px;
-    height: fit-content;
-    border-radius: 15px;
-    position: relative;
-  }
-  .paket > center > img {
-    width: 200px;
-    height: 130px;
-    object-position: center -40px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  .section-form {
-    width: 100%;
-    height: 100vh;
-  }
-  .paket-url {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0px;
-    top: 0px;
-    border-radius: 15px;
-  }
-  .paket-url:hover {
-    background-color: rgba(0, 0, 0, 0.376);
-    transition: 200ms ease-in-out;
-  }
-  .gambar-utama-pemesanan > div {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 300px;
-    height: 400px;
-    transition: ease-in-out 200ms;
-  }
-
-  .section-form-bio {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    opacity: 1;
-    position: absolute;
-    padding-top: 150px;
-    transition: opacity 0.3s ease, height 0.3s ease;
-  }
-
-  .ipt-form {
-    width: 99%;
-    height: 40px;
-    background-color: #e0eaf3;
-    border-radius: 5px;
-    border: none;
-    padding: 10px;
-    font-weight: bold;
-  }
-
-  button.btn-primary {
-    cursor: pointer;
-    font-size: 20px;
-    background-color: #2c4257;
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 3px;
-    transition: background-color 0.2s;
-  }
-
-  button.btn-primary:hover {
-    background-color: #1b2c3d;
-  }
-
-  button.btn-secondary {
-    cursor: pointer;
-    font-size: 20px;
-    background-color: #572c2c;
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 3px;
-    transition: background-color 0.2s;
-  }
-
-  button.btn-secondary:hover {
-    background-color: #3e1f1f;
-  }
-
-  .hidden {
-    opacity: 0;
-    height: 0;
-    transition: opacity 0.3s ease, height 0.3s ease;
-    overflow: hidden;
-  }
+/* Global fixes for all screen sizes */
+* {
+  box-sizing: border-box;
 }
-@media only screen and (min-width: 768px) {
-  .section-detail-layanan {
-    width: 100%;
-    height: fit-content;
-    padding-left: 100px;
-    padding-top: 150px;
-    padding-bottom: 100px;
-  }
 
-  .detail-layanan {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 30px;
-  }
-
-  .detail {
-    width: 100%;
-    display: block;
-    justify-content: center;
-  }
-
-  .detail > p {
-    width: 60%;
-    font-size: 16px;
-    text-align: justify;
-  }
-
-  .detail > h1 {
-    font-size: 23px;
-  }
-
-  .gambar-utama > div {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 300px;
-    height: 400px;
-    transition: ease-in-out 200ms;
-  }
-
-  .gambar {
-    display: grid;
-    justify-content: left;
-    grid-template-columns: auto auto auto auto auto;
-  }
-
-  .gambar > div {
-    width: 75px;
-    height: 75px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    cursor: pointer;
-  }
-
-  .section-paket-layanan {
-    display: grid;
-    align-items: center;
-    width: 100%;
-    height: fit-content;
-  }
-
-  .paket-layanan-list {
-    display: grid;
-    grid-template-columns: auto;
-    justify-content: center;
-  }
-  .paket {
-    background-color: #d1dfed;
-    padding: 10px;
-    width: 250px;
-    height: fit-content;
-    border-radius: 15px;
-    position: relative;
-  }
-  .paket > center > img {
-    width: 200px;
-    height: 130px;
-    object-position: center -40px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  .section-form {
-    width: 100%;
-    height: 100vh;
-  }
-  .paket-url {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0px;
-    top: 0px;
-    border-radius: 15px;
-  }
-  .paket-url:hover {
-    background-color: rgba(0, 0, 0, 0.376);
-    transition: 200ms ease-in-out;
-  }
-  .gambar-utama-pemesanan > div {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 300px;
-    height: 400px;
-    transition: ease-in-out 200ms;
-  }
-
-  .section-form-bio {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    opacity: 1;
-    position: absolute;
-    padding-top: 150px;
-    transition: opacity 0.3s ease, height 0.3s ease;
-  }
-
-  .ipt-form {
-    width: 99%;
-    height: 40px;
-    background-color: #e0eaf3;
-    border-radius: 5px;
-    border: none;
-    padding: 10px;
-    font-weight: bold;
-  }
-
-  button.btn-primary {
-    cursor: pointer;
-    font-size: 20px;
-    background-color: #2c4257;
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 3px;
-    transition: background-color 0.2s;
-  }
-
-  button.btn-primary:hover {
-    background-color: #1b2c3d;
-  }
-
-  button.btn-secondary {
-    cursor: pointer;
-    font-size: 20px;
-    background-color: #572c2c;
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 3px;
-    transition: background-color 0.2s;
-  }
-
-  button.btn-secondary:hover {
-    background-color: #3e1f1f;
-  }
-
-  .hidden {
-    opacity: 0;
-    height: 0;
-    transition: opacity 0.3s ease, height 0.3s ease;
-    overflow: hidden;
-  }
+body {
+  overflow-x: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
+
+/* Fix input number untuk total_orang */
+input[type="number"] {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  pointer-events: auto !important;
+  cursor: text !important;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Prevent text overflow globally */
+h1, h2, h3, h4, h5, h6, p, span, label {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Mobile First - Base Styles */
+.section-detail-layanan {
+  width: 100%;
+  height: fit-content;
+  padding: 120px 15px 60px 15px;
+  overflow-x: hidden;
+}
+
+.detail-layanan {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+.gambar-layanan {
+  display: grid;
+  justify-content: center;
+}
+
+.gambar-utama > div {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  max-width: 350px;
+  height: 350px;
+  transition: ease-in-out 200ms;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.gambar {
+  display: grid;
+  justify-content: left;
+  grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+  gap: 8px;
+  max-width: 350px;
+  margin-top: 10px;
+}
+
+.gambar > div {
+  width: 100%;
+  aspect-ratio: 1;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.gambar > div:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.detail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+}
+
+.detail > h1 {
+  color: #2C4257;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.detail > p {
+  width: 100%;
+  font-size: 14px;
+  text-align: justify;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.section-paket-layanan {
+  display: grid;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  padding: 40px 15px;
+}
+
+.paket-layanan-list {
+  display: grid;
+  grid-template-columns: 2fr;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  align-items: stretch;
+}
+/* Enhanced Paket Card Styles */
+.paket {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f5fa 100%);
+  padding: 20px;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  position: relative;
+  box-shadow: 0 8px 25px rgba(44, 66, 87, 0.12);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  border: 1px solid rgba(44, 66, 87, 0.08);
+}
+
+/* Decorative gradient overlay */
+.paket::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #2C4257 0%, #5a7a9a 50%, #2C4257 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.paket:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(44, 66, 87, 0.25);
+  border-color: rgba(44, 66, 87, 0.2);
+}
+
+/* Card header/title */
+.paket > h5 {
+  padding: 12px 5px 15px 5px;
+  text-align: center;
+  font-size: 20px;
+  margin: 0;
+  color: #2C4257;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  position: relative;
+  background: linear-gradient(135deg, #2C4257 0%, #1b3549 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Image container with enhanced styling */
+.paket > center {
+  position: relative;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.paket > center::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(44, 66, 87, 0.1) 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.paket:hover > center::after {
+  opacity: 1;
+}
+
+.paket > center > img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 15px;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: brightness(0.95);
+}
+
+.paket:hover > center > img {
+  transform: scale(1.08);
+  filter: brightness(1);
+}
+
+/* Price and details container */
+.paket > div:first-of-type {
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+  flex-grow: 1;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+/* Price styling */
+.paket > div:first-of-type > span {
+  font-size: 24px !important;
+  font-weight: 900 !important;
+  color: #2C4257 !important;
+  text-align: center;
+  display: block;
+  padding: 8px 0;
+  background: linear-gradient(135deg, #2C4257 0%, #5a7a9a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.5px;
+}
+
+/* List styling */
+.paket ul {
+  font-size: 13px;
+  font-weight: 600;
+  flex: 1;
+  margin: 0;
+  padding-left: 20px;
+  list-style-position: outside;
+  list-style-type: none;
+}
+
+.paket ul li {
+  margin-bottom: 10px;
+  line-height: 1.7;
+  word-break: break-word;
+  padding-left: 8px;
+  color: #2C4257;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.paket ul li::before {
+  content: '✓';
+  position: absolute;
+  left: -16px;
+  color: #2C4257;
+  font-weight: 900;
+  font-size: 14px;
+}
+
+.paket:hover ul li {
+  padding-left: 12px;
+}
+
+/* Button container */
+.paket > div:last-of-type {
+  cursor: pointer;
+  margin-top: 20px;
+  display: grid;
+  justify-content: center;
+  padding-bottom: 5px;
+  flex-shrink: 0;
+}
+
+/* Enhanced button */
+.paket button {
+  background: linear-gradient(135deg, #2C4257 0%, #1b3549 100%);
+  border: none;
+  color: white;
+  padding: 14px 30px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(44, 66, 87, 0.3);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.paket button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.paket button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.paket button:hover {
+  background: linear-gradient(135deg, #1b3549 0%, #0f1f2e 100%);
+  box-shadow: 0 8px 25px rgba(44, 66, 87, 0.5);
+  transform: translateY(-3px);
+}
+
+.paket button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(44, 66, 87, 0.4);
+}
+
+/* Hover overlay */
+.paket-url {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 20px;
+  z-index: 1;
+}
+
+.paket-url:hover {
+  background-color: rgba(44, 66, 87, 0.03);
+  transition: 200ms ease-in-out;
+}
+
+/* Responsive adjustments */
 @media only screen and (min-width: 600px) {
-  .section-detail-layanan {
-    width: 100%;
-    height: fit-content;
-    padding-top: 150px;
-    padding-bottom: 100px;
-  }
-
-  .detail-layanan {
-    display: grid;
-    grid-template-columns: auto;
-    gap: 30px;
-  }
-
-  .gambar-layanan {
-    display: grid;
-    justify-content: center;
-  }
-
-  .detail {
-    width: 100%;
-    display: grid;
-    justify-content: center;
-  }
-
-  .detail > p {
-    width: 400px;
-    font-size: 16px;
-    text-align: justify;
-  }
-
-  .detail > h1 {
-    font-size: 23px;
-  }
-
-  .gambar-utama > div {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 300px;
-    height: 400px;
-    transition: ease-in-out 200ms;
-  }
-
-  .gambar {
-    display: grid;
-    justify-content: left;
-    grid-template-columns: auto auto auto auto auto;
-  }
-
-  .gambar > div {
-    width: 75px;
-    height: 75px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    cursor: pointer;
-  }
-
-  .section-paket-layanan {
-    display: grid;
-    align-items: center;
-    width: 100%;
-    height: fit-content;
-  }
-
-  .paket-layanan-list {
-    display: grid;
-    grid-template-columns: auto;
-    justify-content: center;
-  }
-  .paket {
-    background-color: #d1dfed;
-    padding: 10px;
-    width: 250px;
-    height: fit-content;
-    border-radius: 15px;
-    position: relative;
-  }
   .paket > center > img {
-    width: 200px;
-    height: 130px;
-    object-position: center -40px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  .section-form {
-    width: 100%;
-    height: 100vh;
-  }
-  .paket-url {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0px;
-    top: 0px;
-    border-radius: 15px;
-  }
-  .paket-url:hover {
-    background-color: rgba(0, 0, 0, 0.376);
-    transition: 200ms ease-in-out;
-  }
-  .gambar-utama-pemesanan > div {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 300px;
-    height: 400px;
-    transition: ease-in-out 200ms;
+    height: 190px;
   }
 
-  .section-form-bio {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    opacity: 1;
-    position: absolute;
-    padding-top: 150px;
-    transition: opacity 0.3s ease, height 0.3s ease;
+  .paket ul {
+    font-size: 13.5px;
   }
 
-  .ipt-form {
-    width: 99%;
-    height: 40px;
-    background-color: #e0eaf3;
-    border-radius: 5px;
-    border: none;
-    padding: 10px;
-    font-weight: bold;
+  .paket ul li {
+    margin-bottom: 11px;
   }
 
-  button.btn-primary {
-    cursor: pointer;
-    font-size: 20px;
-    background-color: #2c4257;
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 3px;
-    transition: background-color 0.2s;
+  .paket > h5 {
+    font-size: 21px;
   }
 
-  button.btn-primary:hover {
-    background-color: #1b2c3d;
+  .paket button {
+    font-size: 17px;
+    padding: 15px 32px;
   }
 
-  button.btn-secondary {
-    cursor: pointer;
-    font-size: 20px;
-    background-color: #572c2c;
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 3px;
-    transition: background-color 0.2s;
+  .paket > div:first-of-type {
+    padding: 22px 20px;
+    gap: 16px;
   }
 
-  button.btn-secondary:hover {
-    background-color: #3e1f1f;
-  }
-
-  .hidden {
-    opacity: 0;
-    height: 0;
-    transition: opacity 0.3s ease, height 0.3s ease;
-    overflow: hidden;
+  .paket > div:first-of-type > span {
+    font-size: 26px !important;
   }
 }
+
 @media only screen and (min-width: 768px) {
-  .section-detail-layanan {
-    width: 100%;
-    height: fit-content;
-    padding-left: 100px;
-    padding-top: 150px;
-    padding-bottom: 100px;
-  }
-
-  .detail-layanan {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 30px;
-  }
-
-  .detail {
-    width: 100%;
-    display: block;
-  }
-
-  .detail > p {
-    width: 60%;
-    font-size: 16px;
-    text-align: justify;
-  }
-
-  .detail > h1 {
-    font-size: 23px;
-  }
-
-  .gambar-utama > div {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 300px;
-    height: 400px;
-    transition: ease-in-out 200ms;
-  }
-
-  .gambar {
-    display: grid;
-    justify-content: left;
-    grid-template-columns: auto auto auto auto auto;
-  }
-
-  .gambar > div {
-    width: 75px;
-    height: 75px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    cursor: pointer;
-  }
-
-  .section-paket-layanan {
-    display: grid;
-    align-items: center;
-    width: 100%;
-    height: fit-content;
-  }
-
-  .paket-layanan-list {
-    display: grid;
-    grid-template-columns: auto;
-    justify-content: center;
-  }
   .paket {
-    background-color: #d1dfed;
-    padding: 10px;
-    width: 250px;
-    height: fit-content;
-    border-radius: 15px;
-    position: relative;
+    max-width: 280px;
+    padding: 22px;
   }
+
   .paket > center > img {
-    width: 200px;
-    height: 130px;
-    object-position: center -40px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  .section-form {
-    width: 100%;
-    height: 100vh;
-  }
-  .paket-url {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0px;
-    top: 0px;
-    border-radius: 15px;
-  }
-  .paket-url:hover {
-    background-color: rgba(0, 0, 0, 0.376);
-    transition: 200ms ease-in-out;
-  }
-  .gambar-utama-pemesanan > div {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 300px;
-    height: 400px;
-    transition: ease-in-out 200ms;
+    height: 170px;
   }
 
-  .section-form-bio {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    opacity: 1;
-    position: absolute;
-    padding-top: 150px;
-    transition: opacity 0.3s ease, height 0.3s ease;
+  .paket > h5 {
+    font-size: 19px;
   }
 
-  .ipt-form {
-    width: 99%;
-    height: 40px;
-    background-color: #e0eaf3;
-    border-radius: 5px;
-    border: none;
-    padding: 10px;
-    font-weight: bold;
+  .paket ul {
+    font-size: 13px;
   }
 
-  button.btn-primary {
-    cursor: pointer;
-    font-size: 20px;
-    background-color: #2c4257;
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 3px;
-    transition: background-color 0.2s;
+  .paket ul li {
+    margin-bottom: 10px;
   }
 
-  button.btn-primary:hover {
-    background-color: #1b2c3d;
+  .paket > div:first-of-type {
+    padding: 20px 18px;
+    gap: 14px;
   }
 
-  button.btn-secondary {
-    cursor: pointer;
-    font-size: 20px;
-    background-color: #572c2c;
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 3px;
-    transition: background-color 0.2s;
+  .paket button {
+    font-size: 16px;
+    padding: 14px 28px;
   }
 
-  button.btn-secondary:hover {
-    background-color: #3e1f1f;
-  }
-
-  .hidden {
-    opacity: 0;
-    height: 0;
-    transition: opacity 0.3s ease, height 0.3s ease;
-    overflow: hidden;
+  .paket > div:first-of-type > span {
+    font-size: 24px !important;
   }
 }
 
 @media only screen and (min-width: 992px) {
-  .section-detail-layanan {
-    width: 100%;
-    height: fit-content;
-    padding-left: 100px;
-    padding-top: 150px;
-    padding-bottom: 100px;
-  }
-
-  .detail-layanan {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 30px;
-  }
-
-  .detail {
-    width: 100%;
-    display: block;
-  }
-
-  .detail > p {
-    width: 60%;
-    font-size: 16px;
-    text-align: justify;
-  }
-
-  .detail > h1 {
-    font-size: 23px;
-  }
-
-  .gambar-utama > div {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 300px;
-    height: 400px;
-    transition: ease-in-out 200ms;
-  }
-
-  .gambar {
-    display: grid;
-    justify-content: left;
-    grid-template-columns: auto auto auto auto auto;
-  }
-
-  .gambar > div {
-    width: 75px;
-    height: 75px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    cursor: pointer;
-  }
-
-  .section-paket-layanan {
-    display: grid;
-    align-items: center;
-    width: 100%;
-    height: fit-content;
-  }
-
-  .paket-layanan-list {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    justify-content: space-around;
-  }
   .paket {
-    background-color: #d1dfed;
-    padding: 10px;
-    width: 250px;
-    height: fit-content;
-    border-radius: 15px;
-    position: relative;
+    max-width: 260px;
   }
+
   .paket > center > img {
-    width: 200px;
-    height: 130px;
-    object-position: center -40px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  .section-form {
-    width: 100%;
-    height: 100vh;
-  }
-  .paket-url {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0px;
-    top: 0px;
-    border-radius: 15px;
-  }
-  .paket-url:hover {
-    background-color: rgba(0, 0, 0, 0.376);
-    transition: 200ms ease-in-out;
-  }
-  .gambar-utama-pemesanan > div {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 300px;
-    height: 400px;
-    transition: ease-in-out 200ms;
+    max-width: 220px;
+    height: 150px;
   }
 
-  .section-form-bio {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    opacity: 1;
-    position: absolute;
-    padding-top: 150px;
-    transition: opacity 0.3s ease, height 0.3s ease;
+  .paket ul {
+    font-size: 12.5px;
   }
 
-  .ipt-form {
-    width: 99%;
-    height: 40px;
-    background-color: #e0eaf3;
-    border-radius: 5px;
-    border: none;
-    padding: 10px;
-    font-weight: bold;
+  .paket ul li {
+    margin-bottom: 9px;
   }
 
-  button.btn-primary {
-    cursor: pointer;
-    font-size: 20px;
-    background-color: #2c4257;
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 3px;
-    transition: background-color 0.2s;
+  .paket > h5 {
+    font-size: 18px;
   }
 
-  button.btn-primary:hover {
-    background-color: #1b2c3d;
+  .paket button {
+    font-size: 15px;
+    padding: 13px 26px;
   }
 
-  button.btn-secondary {
-    cursor: pointer;
-    font-size: 20px;
-    background-color: #572c2c;
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 3px;
-    transition: background-color 0.2s;
+  .paket > div:first-of-type {
+    padding: 18px 16px;
+    gap: 13px;
   }
 
-  button.btn-secondary:hover {
-    background-color: #3e1f1f;
-  }
-
-  .hidden {
-    opacity: 0;
-    height: 0;
-    transition: opacity 0.3s ease, height 0.3s ease;
-    overflow: hidden;
+  .paket > div:first-of-type > span {
+    font-size: 22px !important;
   }
 }
-@media only screen and (min-width: 1200px) {
+
+.section-form {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0 15px;
+}
+
+.section-form-bio {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  opacity: 1;
+  position: absolute;
+  padding: 120px 15px 50px 15px;
+  transition: opacity 0.3s ease, height 0.3s ease;
+}
+
+.ipt-container {
+  width: 100% !important;
+  max-width: 600px;
+}
+
+.ipt-form {
+  width: 100%;
+  background-color: #e0eaf3;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+button.btn-primary {
+  cursor: pointer;
+  font-size: 16px;
+  background-color: #2c4257;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+  min-width: 120px;
+  font-weight: 600;
+}
+
+button.btn-primary:hover {
+  background-color: #1b2c3d;
+}
+
+button.btn-secondary {
+  cursor: pointer;
+  font-size: 16px;
+  background-color: #572c2c;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+  min-width: 120px;
+  font-weight: 600;
+}
+
+button.btn-secondary:hover {
+  background-color: #3e1f1f;
+}
+
+.hidden {
+  opacity: 0;
+  height: 0;
+  transition: opacity 0.3s ease, height 0.3s ease;
+  overflow: hidden;
+}
+
+/* Tablet Small (600px - 767px) */
+@media only screen and (min-width: 600px) {
   .section-detail-layanan {
-    width: 100%;
-    height: fit-content;
-    padding-left: 100px;
-    padding-top: 150px;
-    padding-bottom: 100px;
+    padding: 140px 30px 80px 30px;
   }
 
   .detail-layanan {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 30px;
+    gap: 40px;
+  }
+
+  .gambar-utama > div {
+    max-width: 400px;
+    height: 400px;
+  }
+
+  .gambar {
+    max-width: 400px;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 10px;
   }
 
   .detail {
-    width: 100%;
-    display: block;
+    padding: 0 15px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .detail > h1 {
+    font-size: 24px;
   }
 
   .detail > p {
-    width: 60%;
-    font-size: 16px;
+    font-size: 15px;
+    max-width: 500px;
     text-align: justify;
+  }
+
+  .paket-layanan-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  .paket > center > img {
+    height: 170px;
+  }
+
+  .paket ul {
+    font-size: 12.5px;
+  }
+
+  .paket ul li {
+    margin-bottom: 9px;
+  }
+
+  .paket > h5 {
+    font-size: 19px;
+  }
+
+  .paket button {
+    font-size: 17px;
+    padding: 12px 24px;
+  }
+
+  .paket > div:first-of-type {
+    padding: 22px 20px;
+    gap: 14px;
+  }
+
+  .section-form-bio {
+    padding: 140px 30px 50px 30px;
+  }
+}
+
+/* Tablet Medium (768px - 991px) */
+@media only screen and (min-width: 768px) {
+  .section-detail-layanan {
+    padding: 150px 50px 100px 100px;
+  }
+
+  .detail-layanan {
+    grid-template-columns: auto auto;
+    gap: 40px;
+  }
+
+  .gambar-utama > div {
+    width: 300px;
+    height: 400px;
+  }
+
+  .gambar {
+    max-width: 300px;
+    grid-template-columns: repeat(5, 75px);
+    gap: 5px;
+  }
+
+  .gambar > div {
+    width: 75px;
+    height: 75px;
+  }
+
+  .detail {
+    padding: 0;
+    align-items: flex-start;
+    text-align: left;
   }
 
   .detail > h1 {
     font-size: 23px;
   }
 
-  .gambar-utama > div {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 300px;
-    height: 400px;
-    transition: ease-in-out 200ms;
-  }
-
-  .gambar {
-    display: grid;
-    justify-content: left;
-    grid-template-columns: auto auto auto auto auto;
-  }
-
-  .gambar > div {
-    width: 75px;
-    height: 75px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    cursor: pointer;
+  .detail > p {
+    font-size: 16px;
+    max-width: 100%;
   }
 
   .section-paket-layanan {
-    display: grid;
-    align-items: center;
-    width: 100%;
-    height: fit-content;
+    padding: 40px 50px 60px 50px;
   }
 
   .paket-layanan-list {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    justify-content: space-around;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
   }
+
   .paket {
-    background-color: #d1dfed;
-    padding: 10px;
-    width: 250px;
-    height: fit-content;
-    border-radius: 15px;
-    position: relative;
+    max-width: 270px;
   }
+
   .paket > center > img {
-    width: 200px;
-    height: 130px;
-    object-position: center -40px;
-    object-fit: cover;
-    border-radius: 10px;
+    height: 155px;
   }
-  .section-form {
-    width: 100%;
-    height: 100vh;
+
+  .paket > h5 {
+    font-size: 18px;
   }
-  .paket-url {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0px;
-    top: 0px;
-    border-radius: 15px;
+
+  .paket ul {
+    font-size: 12px;
   }
-  .paket-url:hover {
-    background-color: rgba(0, 0, 0, 0.376);
-    transition: 200ms ease-in-out;
+
+  .paket ul li {
+    margin-bottom: 8px;
   }
-  .gambar-utama-pemesanan > div {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 300px;
-    height: 400px;
-    transition: ease-in-out 200ms;
+
+  .paket > div:first-of-type {
+    padding: 20px 16px;
+    gap: 12px;
+  }
+
+  .paket button {
+    font-size: 16px;
   }
 
   .section-form-bio {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 150px 50px 50px 50px;
+  }
+
+  .ipt-container {
+    max-width: 700px;
+  }
+}
+
+/* Desktop (992px - 1199px) */
+@media only screen and (min-width: 992px) {
+  .section-detail-layanan {
+    padding-left: 100px;
+    padding-right: 50px;
+  }
+
+  .detail > p {
+    max-width: 650px;
+  }
+
+  .section-paket-layanan {
+    padding: 40px 60px 80px 60px;
+  }
+
+  .paket-layanan-list {
+    grid-template-columns: repeat(4, 1fr);
     gap: 30px;
-    opacity: 1;
-    position: absolute;
-    padding-top: 150px;
-    transition: opacity 0.3s ease, height 0.3s ease;
   }
 
-  .ipt-form {
-    width: 99%;
-    height: 40px;
-    background-color: #e0eaf3;
-    border-radius: 5px;
-    border: none;
-    padding: 10px;
-    font-weight: bold;
+  .paket {
+    max-width: 250px;
   }
 
-  button.btn-primary {
-    cursor: pointer;
-    font-size: 20px;
-    background-color: #2c4257;
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 3px;
-    transition: background-color 0.2s;
+  .paket > center > img {
+    max-width: 200px;
+    height: 135px;
+    object-position: center -40px;
   }
 
-  button.btn-primary:hover {
-    background-color: #1b2c3d;
+  .paket ul {
+    font-size: 11.5px;
   }
 
+  .paket ul li {
+    margin-bottom: 7px;
+  }
+
+  .paket > h5 {
+    font-size: 17px;
+  }
+
+  .paket button {
+    font-size: 15px;
+  }
+
+  .paket > div:first-of-type {
+    padding: 18px 14px;
+    gap: 10px;
+  }
+
+  .section-form-bio {
+    padding: 150px 60px 50px 60px;
+  }
+
+  .ipt-container {
+    max-width: 800px;
+  }
+
+  button.btn-primary,
   button.btn-secondary {
-    cursor: pointer;
+    font-size: 18px;
+    padding: 10px 25px;
+  }
+}
+
+/* Desktop Large (1200px+) */
+@media only screen and (min-width: 1200px) {
+  .section-detail-layanan {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
+  .detail > p {
+    max-width: 700px;
+  }
+
+  .section-paket-layanan {
+    padding: 40px 100px 80px 100px;
+  }
+
+  .paket-layanan-list {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    justify-content: space-around;
+  }
+
+  .section-form-bio {
+    padding: 150px 100px 50px 100px;
+  }
+
+  .ipt-container {
+    max-width: 900px;
+  }
+
+  button.btn-primary,
+  button.btn-secondary {
     font-size: 20px;
-    background-color: #572c2c;
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 3px;
-    transition: background-color 0.2s;
-  }
-
-  button.btn-secondary:hover {
-    background-color: #3e1f1f;
-  }
-
-  .hidden {
-    opacity: 0;
-    height: 0;
-    transition: opacity 0.3s ease, height 0.3s ease;
-    overflow: hidden;
+    padding: 10px 30px;
   }
 }

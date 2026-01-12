@@ -149,25 +149,31 @@ class PemesananController extends Controller
         $pemesanan->update(['total_harga' => $totalHarga]);
     }
 
-    public function formPemesananPost(Request $request, PDF $pdf) {
-
-
-        $pelanggan = Pelanggan::create($request->only([
-            'member_id', 'foto_kartu_member', 'nama_lengkap', 'no_wa', 'instagram', 'no_rekening', 'nama_bank'
-        ]));
-
+public function formPemesananPost(Request $request, PDF $pdf) {
+    try {
+        // Format nomor WhatsApp sebelum disimpan
+        $noWa = $this->formatWhatsAppNumber($request->no_wa);
+        
+        $pelanggan = Pelanggan::create(array_merge(
+            $request->only([
+                'member_id', 'foto_kartu_member', 'nama_lengkap', 'instagram', 'no_rekening', 'nama_bank'
+            ]),
+            ['no_wa' => $noWa] // Gunakan nomor yang sudah diformat
+        ));
+        
         // Perhitungan total harga
         $totalHarga = 0;
         $totalHarga += $request->paket_foto ? Paket::find($request->paket_foto)->harga ?? 0 : 0;
-
+        
         // Pastikan menggunakan null coalescing operator untuk menghindari error jika array kosong
         $fileSentIds = $request->file_sent ?? [];
         $servisTambahanIds = $request->servis_tambahan ?? [];
-
+        
         // Perhitungan harga file sent
         if (!empty($fileSentIds)) {
             $totalHarga += array_sum(array_map(fn($id) => FileSent::find($id)->harga_file_sent ?? 0, $fileSentIds));
         }
+        
         // Perhitungan harga servis tambahan
         if (!empty($servisTambahanIds)) {
            if(!empty($request->lembar_foto)) {
@@ -178,110 +184,173 @@ class PemesananController extends Controller
            }
             $totalHarga += array_sum(array_map(fn($id) => ServisTambahan::find($id)->harga_servis ?? 0, $servisTambahanIds));
         }
-        // Hapus return statement yang menghentikan proses
+        
         $request->merge([ "id_paket" => $request->paket_foto ]);
         unset($request->paket_foto);
-
+        
         $pemesanan = Pemesanan::create(array_merge($request->only([
             'catatan', 'referensi', 'total_orang_foto', 'tanggal_booking', 'jam_booking', 'id_paket'
         ]), ['id_pelanggan' => $pelanggan->id_pelanggan, 'total_harga' => $totalHarga]));
-
+        
         $this->associateItems($pemesanan->id_pemesanan, 'servis_tambahan', ServisTambahanPemesanan::class, 'id_servis', $request->servis_tambahan ?? []);
         $this->associateItems($pemesanan->id_pemesanan, 'file_sent', PemesananFileSent::class, 'id_file_sent', $request->file_sent ?? []);
         $this->associateItems($pemesanan->id_pemesanan, 'background', PemesananBackground::class, 'id_background', $request->background ?? []);
-
+        
         $dataInvoice = ['title' => "Invoice", "pemesanan" => Pemesanan::with("pelanggan", "paket")
         ->find($pemesanan->id_pemesanan)];
-
+        
         $pdf = $pdf->loadView("content.document.invoice", $dataInvoice);
-        $this->sendPdf($request->no_wa, base64_encode($pdf->output()));
+        
+        // Coba kirim PDF dan tangkap hasilnya (gunakan nomor yang sudah diformat)
+        $pdfSendResult = $this->sendPdf($noWa, base64_encode($pdf->output()));
+        
+        // Cek apakah pengiriman PDF gagal
+        if ($pdfSendResult === false) {
+            return response()->json([
+                "status" => false,
+                "message" => "Nomor WhatsApp tidak valid. Silakan periksa kembali nomor WhatsApp Anda.",
+                "error_type" => "invalid_wa"
+            ], 400);
+        }
+        
+        // Kirim email notification
         $this->sendEmailNotification($pemesanan);
-
+        
         return response()->json([
             "status" => true,
             "data" => $pemesanan,
         ], 200);
+        
+    } catch (\Exception $e) {
+        \Log::error('Error in formPemesananPost: ' . $e->getMessage());
+        return response()->json([
+            "status" => false,
+            "message" => "Terjadi kesalahan saat memproses pemesanan.",
+            "error" => $e->getMessage()
+        ], 500);
     }
+}
 
-    private function associateItems($pemesananId, $key, $model, $foreignKey, $ids) {
-        foreach ($ids as $id) {
-            $model::create([
-                'id_pemesanan' => $pemesananId,
-                $foreignKey => $id
-            ]);
-        }
+/**
+ * Format nomor WhatsApp ke format Indonesia (62xxx)
+ * 
+ * @param string $number
+ * @return string
+ */
+private function formatWhatsAppNumber($number) {
+    // Hapus semua karakter non-digit
+    $cleaned = preg_replace('/\D/', '', $number);
+    
+    // Jika nomor kosong setelah dibersihkan
+    if (empty($cleaned)) {
+        return $number;
     }
-
-    private function sendEmailNotification($pemesanan) {
-        $emails = Notif::pluck('email');
-
-        // Kirim email ke setiap alamat email menggunakan PHPMailer
-        foreach ($emails as $email) {
-            $mail = new PHPMailer(true);
-
-                // Server settings
-                $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';  // Set the SMTP server to send through
-                $mail->SMTPAuth = true;
-                $mail->Username = 'krizki.work@gmail.com'; // SMTP username
-                $mail->Password = 'fgvb xflb mcaw cmck'; // SMTP password
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
-
-                // Recipients
-                $mail->setFrom('krizki.work@gmail.com', 'Unlock Studio Reminder');
-                $mail->addAddress($email); // Add recipient email
-
-                // Content
-                $mail->isHTML(true);
-                $mail->Subject = 'Pemesanan Baru Telah Diterima';
-                $mail->Body    = view('emails.notification', ['pemesanan' => $pemesanan])->render(); // You can pass any data to the view
-
-                // Send the email
-                $mail->send();
-
-        }
+    
+    // Jika dimulai dengan 0, ganti dengan 62
+    if (substr($cleaned, 0, 1) === '0') {
+        $cleaned = '62' . substr($cleaned, 1);
     }
+    
+    // Jika belum dimulai dengan 62, tambahkan 62
+    if (substr($cleaned, 0, 2) !== '62') {
+        $cleaned = '62' . $cleaned;
+    }
+    
+    return $cleaned;
+}
 
-    private function sendPdf($number, $base64pdf)
-    {
-        $data = [
-            'number' => $number,
-            'base64Pdf' => $base64pdf,
-        ];
-
-        $apiUrl = 'http://localhost:3000/send-pdf';
-
-        $ch = curl_init($apiUrl);
-
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/json',
-            'Authorization: Bearer axBRGRX1VPljmHyp0oZCwLsZ09m3IKR1eRbg9Z7wP8f8gTzsQ7lEPbeogeTsso0E',
+private function associateItems($pemesananId, $key, $model, $foreignKey, $ids) {
+    foreach ($ids as $id) {
+        $model::create([
+            'id_pemesanan' => $pemesananId,
+            $foreignKey => $id
         ]);
+    }
+}
 
-        // Execute cURL request and capture response
-        $response = curl_exec($ch);
+private function sendEmailNotification($pemesanan) {
+    $emails = Notif::pluck('email');
 
-        // Check for cURL errors
-        if (curl_errno($ch)) {
-            // Log the error message
+    // Kirim email ke setiap alamat email menggunakan PHPMailer
+    foreach ($emails as $email) {
+        $mail = new PHPMailer(true);
 
-            return 'cURL error: ' . curl_error($ch);
-        }
+            // Server settings
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';  // Set the SMTP server to send through
+            $mail->SMTPAuth = true;
+            $mail->Username = 'krizki.work@gmail.com'; // SMTP username
+            $mail->Password = 'fgvb xflb mcaw cmck'; // SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
 
-        // Close the cURL session
+            // Recipients
+            $mail->setFrom('krizki.work@gmail.com', 'Unlock Studio Reminder');
+            $mail->addAddress($email); // Add recipient email
+
+            // Content
+            $mail->isHTML(true);
+            $mail->Subject = 'Pemesanan Baru Telah Diterima';
+            $mail->Body    = view('emails.notification', ['pemesanan' => $pemesanan])->render(); // You can pass any data to the view
+
+            // Send the email
+            $mail->send();
+
+    }
+}
+
+private function sendPdf($number, $base64pdf)
+{
+    $data = [
+        'number' => $number,
+        'base64Pdf' => $base64pdf,
+    ];
+
+    $apiUrl = 'http://localhost:3000/send-pdf';
+
+    $ch = curl_init($apiUrl);
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-Type: application/json',
+        'Authorization: Bearer axBRGRX1VPljmHyp0oZCwLsZ09m3IKR1eRbg9Z7wP8f8gTzsQ7lEPbeogeTsso0E',
+    ]);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10); // Timeout 10 detik
+    
+    \Log::info('Mengirim PDF ke WhatsApp', ['number' => $number]);
+
+    // Execute cURL request and capture response
+    $response = curl_exec($ch);
+    \Log::info('Response dari API WhatsApp: ' . $response, ['number' => $number]);
+
+    // Check for cURL errors
+    if (curl_errno($ch)) {
+        \Log::error('cURL error: ' . curl_error($ch), ['number' => $number]);
         curl_close($ch);
-
-        // Log the response for debugging purposes
-
-        // Optionally, return the response if needed
-        return $response;
+        return false; // Return false jika ada error
     }
 
-    public function hapusPemesanan($id_pemesanan) {
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    // Cek response code
+    if ($httpCode >= 400) {
+        \Log::error('HTTP Error Code: ' . $httpCode, ['number' => $number, 'response' => $response]);
+        return false; // Return false jika HTTP error
+    }
+
+    // Cek response body untuk error dari API
+    $responseData = json_decode($response, true);
+    if (isset($responseData['error']) || isset($responseData['success']) && $responseData['success'] === false) {
+        \Log::error('API returned error', ['number' => $number, 'response' => $response]);
+        return false; // Return false jika API mengembalikan error
+    }
+
+    return $response; // Return response jika berhasil
+}    
+public function hapusPemesanan($id_pemesanan) {
         $pemesanan = Pemesanan::find($id_pemesanan);
         $pemesanan->delete();
         return redirect()->route('pemesanan-index');

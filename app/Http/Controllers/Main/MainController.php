@@ -146,15 +146,18 @@ class MainController extends Controller
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         'Content-Type: application/json',
-        'x-goog-api-key: AIzaSyCgu2ARH50BhEHu1_YsdWn29kDwWhspF8s'  // <-- Header API key sesuai contoh curl
+        'x-goog-api-key: AIzaSyCxVWIQ5aWXcsc29E95zIK4MY7XWb18150'  // <-- Header API key sesuai contoh curl
     ]);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($requestBody));
-
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
     $response = curl_exec($ch);
 
     if (curl_errno($ch)) {
         curl_close($ch);
+            \Log::error(curl_error($ch));
+
         return response()->json([
             "status" => false,
             "data" => ["text" => "Error saat menghubungi API: " . curl_error($ch)]

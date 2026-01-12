@@ -1,3 +1,48 @@
+/* Global styles */
+.ipt-container {
+  width: 100% !important;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.ipt-container label {
+  font-size: clamp(16px, 3vw, 20px) !important;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.ipt-container label i {
+  font-size: clamp(12px, 2vw, 14px) !important;
+}
+
+textarea.ipt-form {
+  height: 100px;
+  resize: vertical;
+  z-index: 1 !important; /* FIXED: Changed from -10 to 1 */
+  position: relative;
+}
+
+/* FIXED: Ensure sections don't overlap */
+.section-form-bio {
+  position: relative !important; /* Changed from absolute */
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  opacity: 1;
+  padding: 120px 15px 50px 15px;
+  transition: opacity 0.3s ease;
+}
+
+.section-form-bio.hidden {
+  display: none !important; /* FIXED: Use display none instead of opacity/height */
+}
+
 @media only screen and (max-width: 600px) {
   .section-makesure {
     display: flex;
@@ -7,94 +52,126 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 100svh;
+    min-height: 100svh;
+    padding: 20px 15px;
+    overflow-x: hidden;
   }
 
   .section-makesure > div > h2 {
     display: none;
   }
+  
   .makesure {
     padding-top: 40px;
+    width: 100%;
+    max-width: 100%;
   }
+  
   .detail-makesure {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: center;
   }
+  
   .detail-makesure > div {
-    width: 150px;
+    width: 100%;
+    max-width: 150px;
     height: 150px;
     border-radius: 10px;
     background-color: #2c4257;
     display: flex;
     justify-content: center;
-    align-self: center;
+    align-items: center;
     text-align: center;
     flex-direction: column;
     color: white;
-    font-size: 10px;
+    font-size: clamp(10px, 2vw, 12px);
+    padding: 10px;
+    word-wrap: break-word;
   }
 
   .background-image-makesure > img {
-    width: 150px;
+    width: 100%;
+    max-width: 130px;
     padding: 5px;
     height: 100px;
+    object-fit: cover;
   }
 
   .addons {
     text-align: left !important;
     justify-content: start;
     display: block;
-    padding: 30px;
+    padding: 20px;
+    width: 100%;
   }
+  
+  .addons > ul {
+    padding-left: 20px;
+    margin: 0;
+  }
+  
   .addons > ul > li {
     list-style-type: circle !important;
+    font-size: clamp(12px, 2.5vw, 14px);
+    word-wrap: break-word;
+    margin-bottom: 5px;
   }
 
   .action-makesure {
     padding-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
   }
+  
   .action-makesure > button,
   .action-makesure > a > button {
-    font-size: 13px;
-  }
-
-  .ipt-container {
-    display: grid;
-    width: 1000px;
+    font-size: clamp(12px, 2.5vw, 13px);
+    padding: 10px 15px;
+    width: 100%;
+    max-width: 200px;
   }
 
   .background-form-list {
     display: grid;
-    grid-template-columns: auto;
-    gap: 30px;
-  }
-  .addons {
-    text-align: left !important;
-    justify-content: start;
-    display: block;
-    padding: 30px;
-  }
-  .addons > ul > li {
-    list-style-type: circle !important;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+    padding: 10px;
   }
 
-  .action-makesure {
-    padding-top: 30px;
+  .background-form-list figure {
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
   }
-  .background-form-list {
-    display: grid;
-    grid-template-columns: auto;
-    gap: 30px;
+
+  .background-form-list figure img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+  }
+
+  .background-form-list figcaption {
+    margin-top: 10px;
+    word-wrap: break-word;
+    font-size: clamp(12px, 2vw, 13px);
   }
 
   .addon-servis {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     padding: 10px;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 15px;
     width: 100%;
   }
 
@@ -104,51 +181,72 @@
     align-items: center;
     background-color: #2c4257;
     color: white;
-    width: 50%;
-    height: 180px;
+    width: 45%;
+    min-width: 120px;
+    height: 120px;
     border-radius: 10px;
     cursor: pointer;
     transition: 200ms ease-in-out;
   }
 
   #logo-addon {
-    font-size: 50px;
+    font-size: clamp(30px, 6vw, 50px);
   }
+  
   .addon:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     background-color: white;
     border: 2px solid #2c4257;
     color: #2c4257;
   }
+  
   .select-container {
     position: relative;
-    width: 300px;
+    width: 100%;
+    max-width: 400px;
     font-family: Arial, sans-serif;
   }
+  
   .select-input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: clamp(12px, 2.5vw, 16px);
+    box-sizing: border-box;
   }
+  
   .select-options {
-    position: absolute;
-    top: 100%;
-    left: 0;
+    position: static;
     width: 100%;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
-    max-height: 200px;
+    max-height: 250px;
     overflow-y: auto;
-    z-index: 1;
+    margin-top: 5px;
   }
+  
   .select-option {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     padding: 10px;
     cursor: pointer;
+    font-size: clamp(11px, 2vw, 12px);
+    word-wrap: break-word;
   }
+  
+  .select-option > div {
+    flex: 1 1 100%;
+  }
+
+  .select-option input[type="text"] {
+    width: 60px !important;
+    padding: 5px;
+    font-size: 14px;
+  }
+  
   .select-checkbox {
     appearance: none;
     -webkit-appearance: none;
@@ -160,18 +258,36 @@
     vertical-align: middle;
     margin-right: 8px;
     background-color: #fff;
+    flex-shrink: 0;
   }
+  
   .select-checkbox:checked {
     background-color: #4c74af;
     border-color: #4c7caf;
   }
+
+  .modal {
+    padding: 10px;
+    z-index: 1000;
+    height:fit-content;
+
+  }
+
+  .modal-content {
+    width: 95% !important;
+    max-width: 450px !important;
+    margin: 5% auto;
+    padding: 15px;
+    height:fit-content;
+    overflow-y: auto;
+    position: relative;
+    z-index: 1001;
+  }
 }
+
 @media only screen and (min-width: 600px) {
-  .section-makesure > div > h2 {
-    display: none;
-  }
   .section-makesure {
-    padding-top: 150px;
+    padding: 150px 30px 50px 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -179,35 +295,47 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: fit-content;
-    padding-bottom: 10px;
+    min-height: fit-content;
+    overflow-x: hidden;
   }
+  
+  .section-makesure > div > h2 {
+    display: none;
+  }
+  
   .makesure {
     padding-top: 40px;
+    width: 100%;
   }
+  
   .detail-makesure {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+    align-items: center;
   }
+  
   .detail-makesure > div {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     border-radius: 10px;
     background-color: #2c4257;
     display: flex;
     justify-content: center;
-    align-self: center;
+    align-items: center;
     text-align: center;
     flex-direction: column;
     color: white;
-    font-size: 10px;
+    font-size: 12px;
+    padding: 15px;
+    word-wrap: break-word;
   }
 
   .background-image-makesure > img {
     width: 150px;
     padding: 5px;
-    height: 100px;
+    height: 110px;
+    object-fit: cover;
   }
 
   .addons {
@@ -215,49 +343,64 @@
     justify-content: start;
     display: block;
     padding: 30px;
+    width: 100%;
   }
+  
   .addons > ul > li {
     list-style-type: circle !important;
+    font-size: 14px;
+    word-wrap: break-word;
   }
 
   .action-makesure {
     padding-top: 30px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
   }
+  
   .action-makesure > button,
   .action-makesure > a > button {
     font-size: 13px;
+    padding: 12px 20px;
   }
+  
   .background-form-list {
     display: grid;
-    grid-template-columns: auto;
-    gap: 30px;
-  }
-  .addons {
-    text-align: left !important;
-    justify-content: start;
-    display: block;
-    padding: 30px;
-  }
-  .addons > ul > li {
-    list-style-type: circle !important;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
   }
 
-  .action-makesure {
-    padding-top: 30px;
+  .background-form-list figure {
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
   }
-  .background-form-list {
-    display: grid;
-    grid-template-columns: auto;
-    gap: 30px;
+
+  .background-form-list figure img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+  }
+
+  .background-form-list figcaption {
+    margin-top: 10px;
+    word-wrap: break-word;
   }
 
   .addon-servis {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     padding: 10px;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
     width: 100%;
   }
 
@@ -267,8 +410,9 @@
     align-items: center;
     background-color: #2c4257;
     color: white;
-    width: 50%;
-    height: 180px;
+    width: 40%;
+    max-width: 180px;
+    height: 150px;
     border-radius: 10px;
     cursor: pointer;
     transition: 200ms ease-in-out;
@@ -277,17 +421,21 @@
   #logo-addon {
     font-size: 50px;
   }
+  
   .addon:hover {
     transform: scale(1.1);
     background-color: white;
     border: 2px solid #2c4257;
     color: #2c4257;
   }
+  
   .select-container {
     position: relative;
-    width: 300px;
+    width: 100%;
+    max-width: 450px;
     font-family: Arial, sans-serif;
   }
+  
   .select-input {
     width: 100%;
     padding: 10px;
@@ -295,23 +443,31 @@
     border-radius: 4px;
     font-size: 16px;
   }
+  
   .select-options {
-    position: absolute;
-    top: 100%;
-    left: 0;
+    position: static;
     width: 100%;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
-    max-height: 200px;
+    max-height: 250px;
     overflow-y: auto;
-    z-index: 1;
+    margin-top: 5px;
   }
+  
   .select-option {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     padding: 10px;
     cursor: pointer;
+    font-size: 12px;
   }
+
+  .select-option input[type="text"] {
+    width: 60px !important;
+  }
+  
   .select-checkbox {
     appearance: none;
     -webkit-appearance: none;
@@ -324,17 +480,30 @@
     margin-right: 8px;
     background-color: #fff;
   }
+  
   .select-checkbox:checked {
     background-color: #4c74af;
     border-color: #4c7caf;
   }
-}
-@media only screen and (min-width: 768px) {
-  .section-makesure > div > h2 {
-    display: block;
+
+  .modal {
+    z-index: 1000;
   }
+
+  .modal-content {
+    width: 90% !important;
+    max-width: 500px !important;
+    margin: 5% auto;
+        height:fit-content;
+    padding: 20px;
+    position: relative;
+    z-index: 1001;
+  }
+}
+
+@media only screen and (min-width: 768px) {
   .section-makesure {
-    padding-bottom: 100px;
+    padding: 100px 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -342,34 +511,51 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 100vh;
+    min-height: 100vh;
+    overflow-x: hidden;
   }
+  
+  .section-makesure > div > h2 {
+    display: block;
+    font-size: clamp(24px, 4vw, 32px);
+    word-wrap: break-word;
+  }
+  
   .makesure {
     padding-top: 40px;
+    width: 100%;
+    max-width: 1200px;
   }
+  
   .detail-makesure {
     display: flex;
     flex-direction: row;
-    gap: 100px;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
   }
+  
   .detail-makesure > div {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     border-radius: 10px;
     background-color: #2c4257;
     display: flex;
     justify-content: center;
-    align-self: center;
+    align-items: center;
     text-align: center;
     flex-direction: column;
     color: white;
-    font-size: 10px;
+    font-size: 12px;
+    padding: 15px;
+    word-wrap: break-word;
   }
 
   .background-image-makesure > img {
     width: 150px;
     padding: 5px;
-    height: 100px;
+    height: 110px;
+    object-fit: cover;
   }
 
   .addons {
@@ -377,46 +563,46 @@
     justify-content: start;
     display: block;
     padding: 30px;
+    max-width: 300px;
   }
+  
   .addons > ul > li {
     list-style-type: circle !important;
+    font-size: 14px;
+    word-wrap: break-word;
   }
 
   .action-makesure {
     padding-top: 30px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
   }
 
   .background-form-list {
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
-  }
-  .addons {
-    text-align: left !important;
-    justify-content: start;
-    display: block;
-    padding: 30px;
-  }
-  .addons > ul > li {
-    list-style-type: circle !important;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
   }
 
-  .action-makesure {
-    padding-top: 30px;
-  }
-  .background-form-list {
-    display: grid;
-    grid-template-columns: auto;
-    gap: 30px;
+  .background-form-list figure {
+    margin: 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
   }
 
   .addon-servis {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     padding: 10px;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 25px;
     width: 100%;
   }
 
@@ -426,7 +612,8 @@
     align-items: center;
     background-color: #2c4257;
     color: white;
-    width: 15%;
+    width: 20%;
+    min-width: 150px;
     height: 180px;
     border-radius: 10px;
     cursor: pointer;
@@ -436,17 +623,21 @@
   #logo-addon {
     font-size: 50px;
   }
+  
   .addon:hover {
     transform: scale(1.1);
     background-color: white;
     border: 2px solid #2c4257;
     color: #2c4257;
   }
+  
   .select-container {
     position: relative;
-    width: 300px;
+    width: 100%;
+    max-width: 500px;
     font-family: Arial, sans-serif;
   }
+  
   .select-input {
     width: 100%;
     padding: 10px;
@@ -454,23 +645,35 @@
     border-radius: 4px;
     font-size: 16px;
   }
+  
   .select-options {
-    position: absolute;
-    top: 100%;
-    left: 0;
+    position: static;
     width: 100%;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
-    max-height: 200px;
+    max-height: 300px;
     overflow-y: auto;
-    z-index: 1;
+    margin-top: 5px;
   }
+  
   .select-option {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     padding: 10px;
     cursor: pointer;
+    font-size: 12px;
   }
+
+  .select-option > div {
+    flex: 1;
+  }
+
+  .select-option input[type="text"] {
+    width: 60px !important;
+  }
+  
   .select-checkbox {
     appearance: none;
     -webkit-appearance: none;
@@ -483,6 +686,7 @@
     margin-right: 8px;
     background-color: #fff;
   }
+  
   .select-checkbox:checked {
     background-color: #4c74af;
     border-color: #4c7caf;
@@ -490,9 +694,6 @@
 }
 
 @media only screen and (min-width: 992px) {
-  .section-makesure > div > h2 {
-    display: block;
-  }
   .section-makesure {
     padding-bottom: 100px;
     display: flex;
@@ -502,34 +703,48 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 100vh;
+    min-height: 100vh;
+    overflow-x: hidden;
   }
+  
+  .section-makesure > div > h2 {
+    display: block;
+  }
+  
   .makesure {
     padding-top: 40px;
+    width: 100%;
+    max-width: 1400px;
   }
+  
   .detail-makesure {
     display: flex;
     flex-direction: row;
-    gap: 100px;
+    gap: 80px;
+    justify-content: center;
   }
+  
   .detail-makesure > div {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     border-radius: 10px;
     background-color: #2c4257;
     display: flex;
     justify-content: center;
-    align-self: center;
+    align-items: center;
     text-align: center;
     flex-direction: column;
     color: white;
-    font-size: 10px;
+    font-size: 13px;
+    padding: 20px;
+    word-wrap: break-word;
   }
 
   .background-image-makesure > img {
-    width: 150px;
+    width: 170px;
     padding: 5px;
-    height: 100px;
+    height: 120px;
+    object-fit: cover;
   }
 
   .addons {
@@ -538,17 +753,23 @@
     display: block;
     padding: 30px;
   }
+  
   .addons > ul > li {
     list-style-type: circle !important;
+    font-size: 15px;
   }
 
   .action-makesure {
     padding-top: 30px;
   }
+  
   .background-form-list {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .addon-servis {
@@ -567,7 +788,7 @@
     align-items: center;
     background-color: #2c4257;
     color: white;
-    width: 15%;
+    width: 20%;
     height: 180px;
     border-radius: 10px;
     cursor: pointer;
@@ -577,17 +798,21 @@
   #logo-addon {
     font-size: 50px;
   }
+  
   .addon:hover {
     transform: scale(1.1);
     background-color: white;
     border: 2px solid #2c4257;
     color: #2c4257;
   }
+  
   .select-container {
     position: relative;
-    width: 300px;
+    width: 100%;
+    max-width: 500px;
     font-family: Arial, sans-serif;
   }
+  
   .select-input {
     width: 100%;
     padding: 10px;
@@ -595,23 +820,32 @@
     border-radius: 4px;
     font-size: 16px;
   }
+  
   .select-options {
-    position: absolute;
-    top: 100%;
-    left: 0;
+    position: static;
     width: 100%;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
-    max-height: 200px;
+    max-height: 300px;
     overflow-y: auto;
-    z-index: 1;
+    margin-top: 5px;
   }
+  
   .select-option {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
     padding: 10px;
     cursor: pointer;
+    font-size: 12px;
   }
+
+  .select-option > div {
+    flex: 1;
+  }
+  
   .select-checkbox {
     appearance: none;
     -webkit-appearance: none;
@@ -624,15 +858,14 @@
     margin-right: 8px;
     background-color: #fff;
   }
+  
   .select-checkbox:checked {
     background-color: #4c74af;
     border-color: #4c7caf;
   }
 }
+
 @media only screen and (min-width: 1200px) {
-  .section-makesure > div > h2 {
-    display: block;
-  }
   .section-makesure {
     padding-bottom: 100px;
     display: flex;
@@ -642,34 +875,48 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 100vh;
+    min-height: 100vh;
+    overflow-x: hidden;
   }
+  
+  .section-makesure > div > h2 {
+    display: block;
+  }
+  
   .makesure {
     padding-top: 40px;
+    width: 100%;
+    max-width: 1600px;
   }
+  
   .detail-makesure {
     display: flex;
     flex-direction: row;
     gap: 100px;
+    justify-content: center;
   }
+  
   .detail-makesure > div {
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
     border-radius: 10px;
     background-color: #2c4257;
     display: flex;
     justify-content: center;
-    align-self: center;
+    align-items: center;
     text-align: center;
     flex-direction: column;
     color: white;
     font-size: 15px;
+    padding: 20px;
+    word-wrap: break-word;
   }
 
   .background-image-makesure > img {
-    width: 150px;
+    width: 180px;
     padding: 5px;
-    height: 100px;
+    height: 130px;
+    object-fit: cover;
   }
 
   .addons {
@@ -678,16 +925,22 @@
     display: block;
     padding: 30px;
   }
+  
   .addons > ul > li {
     list-style-type: circle !important;
+    font-size: 16px;
   }
 
   .action-makesure {
     padding-top: 30px;
   }
+  
   .background-form-list {
     display: grid;
-    grid-template-columns: auto auto auto;
-    gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
   }
 }

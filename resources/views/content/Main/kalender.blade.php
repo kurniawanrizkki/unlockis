@@ -20,7 +20,7 @@
      hiddenFooter();
     document.addEventListener('DOMContentLoaded', function() {
        let data_jadwal;
-       fetch("https://1ad067e7cd97.ngrok-free.app/api/jadwal")
+       fetch("http://localhost:8000/api/jadwal")
        .then(response => response.json())
        .then(data => {
            var calendarEl = document.getElementById('calendar');

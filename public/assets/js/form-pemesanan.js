@@ -1,128 +1,168 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const sectionMakeSure = document.getElementById('section-makesure'),
-    sectionForm = document.getElementById('section-form'),
-    sectionFormBio0 = document.getElementById('section-form-bio-0'),
-    sectionFormBio1 = document.getElementById('section-form-bio-1'),
-    sectionFormPemesanan0 = document.getElementById('section-form-pemesanan-0'),
-    sectionFormPemesanan1 = document.getElementById('section-form-pemesanan-1'),
-    sectionFormPemesanan2 = document.getElementById('section-form-pemesanan-2'),
-    sectionFormPemesanan3 = document.getElementById('section-form-pemesanan-3');
+    // --- Elemen DOM Global ---
+    const header = document.querySelector('header');
+    const logonav = document.getElementById('logo-nav'); // pastikan ID ini ada di HTML
+    const listnav = document.querySelector('.navbar-list'); // sesuaikan selector dengan struktur HTML-mu
 
-  const btnPesanMakeSure = document.getElementById('btn-pesan'),
-    btnFormBioNext0 = document.getElementById('btn-selanjutnya-1'),
-    btnFormBioNext1 = document.getElementById('btn-selanjutnya-2'),
-    btnFormPemesanan0 = document.getElementById('btn-selanjutnya-3'),
-    btnFormPemesanan1 = document.getElementById('btn-selanjutnya-4'),
-    btnFormPemesanan2 = document.getElementById('btn-selanjutnya-5'),
-    btnBack0 = document.getElementById('btn-back-0'),
-    btnBack1 = document.getElementById('btn-back-1'),
-    btnBack2 = document.getElementById('btn-back-2'),
-    btnBack3 = document.getElementById('btn-back-3'),
-    btnBack4 = document.getElementById('btn-back-4'),
-    btnBack5 = document.getElementById('btn-back-5');
+    // --- Section Elements ---
+    const sectionMakeSure = document.getElementById('section-makesure');
+    const sectionForm = document.getElementById('section-form');
+    const sections = {
+        bio0: document.getElementById('section-form-bio-0'),
+        bio1: document.getElementById('section-form-bio-1'),
+        pesan0: document.getElementById('section-form-pemesanan-0'),
+        pesan1: document.getElementById('section-form-pemesanan-1'),
+        pesan2: document.getElementById('section-form-pemesanan-2'),
+        pesan3: document.getElementById('section-form-pemesanan-3')
+    };
 
-  // Section 1: Data Diri
-  const namaLengkap = document.getElementById('nama');
-  const noWa = document.getElementById('wa');
-  const instagram = document.getElementById('instagram');
-  // const memberId = document.querySelector('input[name="member_id"]');
-  // const fotoKartuMember = document.querySelector('input[name="foto_kartu_member"]');
+    // --- Button Elements ---
+    const buttons = {
+        pesan: document.getElementById('btn-pesan'),
+        next: {
+            bio0: document.getElementById('btn-selanjutnya-1'),
+            bio1: document.getElementById('btn-selanjutnya-2'),
+            pesan0: document.getElementById('btn-selanjutnya-3'),
+            pesan1: document.getElementById('btn-selanjutnya-4'),
+            pesan2: document.getElementById('btn-selanjutnya-5')
+        },
+        back: {
+            makeSure: document.getElementById('btn-back-0'),
+            bio1: document.getElementById('btn-back-1'),
+            pesan0: document.getElementById('btn-back-2'),
+            pesan1: document.getElementById('btn-back-3'),
+            pesan2: document.getElementById('btn-back-4'),
+            pesan3: document.getElementById('btn-back-5')
+        }
+    };
 
-  // Section 2: Informasi Bank
-  const noRekening = document.getElementById('norek');
-  const namaBank = document.getElementById('bank');
+    // --- Input Fields ---
+    const inputs = {
+        // Section 1
+        nama: document.getElementById('nama'),
+        wa: document.getElementById('wa'),
+        ig: document.getElementById('instagram'),
+        // Section 2
+        rekening: document.getElementById('norek'),
+        bank: document.getElementById('bank'),
+        // Section 3
+        tanggal: document.getElementById('tanggal_booking'),
+        jam: document.getElementById('jam_booking'),
+        orang: document.getElementById('total_orang')
+    };
 
-  // Section 3: Informasi Pemesanan
-  const tanggalBooking = document.getElementById('tanggal_booking');
-  const jamBooking = document.getElementById('jam_booking');
-  const totalOrangFoto = document.getElementById('total_orang');
-  // Show first form section
-  btnPesanMakeSure.onclick = function () {
-    header.style.backgroundColor = '#2c4257cb';
-    logonav.style.width = '30px';
-    listnav.style.alignItems = 'center';
-    listnav.style.margin = '15px';
-    sectionMakeSure.style.display = 'none';
-    sectionForm.classList.remove('hidden');
-    sectionFormBio0.classList.remove('hidden');
-    headerStatus = true;
-  };
-
-  // Navigate forward
-  btnFormBioNext0.onclick = function () {
-    if (namaLengkap.value == '' || noWa.value == '' || instagram.value == '') {
-      alert('Lengkapi Form nya');
-    } else {
-      sectionFormBio0.classList.add('hidden');
-      sectionFormBio1.classList.remove('hidden');
+    // --- Helper: Tampilkan SweetAlert error ---
+    function showError(message) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Form Belum Lengkap',
+            text: message,
+            confirmButtonText: 'OK'
+        });
     }
-  };
-  btnFormBioNext1.onclick = function () {
-    if (namaBank.value == '' || noRekening.value == '') {
-      alert('Lengkapi Form nya');
-    } else {
-      sectionFormBio1.classList.add('hidden');
-      sectionFormPemesanan0.classList.remove('hidden');
+
+    // --- Helper: Sembunyikan semua section form ---
+    function hideAllSections() {
+        Object.values(sections).forEach(section => section.classList.add('hidden'));
     }
-  };
 
-  btnFormPemesanan0.onclick = function () {
-    if (tanggalBooking.value == '' || jamBooking.value == '' || totalOrangFoto.value == '') {
-      alert('Lengkapi Form nya');
-    } else {
-      sectionFormPemesanan0.classList.add('hidden');
-      sectionFormPemesanan1.classList.remove('hidden');
+    // --- Navigasi: ke section tertentu ---
+    function showSection(sectionKey) {
+        hideAllSections();
+        sections[sectionKey].classList.remove('hidden');
     }
-  };
 
-  btnFormPemesanan1.onclick = function () {
-    sectionFormPemesanan1.classList.add('hidden');
-    sectionFormPemesanan2.classList.remove('hidden');
-  };
+    // --- Event: Mulai pemesanan dari section "makesure" ---
+    buttons.pesan?.addEventListener('click', () => {
+        if (header) header.style.backgroundColor = '#2c4257cb';
+        if (logonav) logonav.style.width = '30px';
+        if (listnav) {
+            listnav.style.alignItems = 'center';
+            listnav.style.margin = '15px';
+        }
+        sectionMakeSure.style.display = 'none';
+        sectionForm.classList.remove('hidden');
+        showSection('bio0');
+        window.headerStatus = true;
+    });
 
-  btnFormPemesanan2.onclick = function () {
-    sectionFormPemesanan2.classList.add('hidden');
-    sectionFormPemesanan3.classList.remove('hidden');
-  };
+    // --- Validasi & Navigasi Maju ---
+    buttons.next.bio0?.addEventListener('click', () => {
+        const { nama, wa, ig } = inputs;
+        if (!nama.value.trim() || !wa.value.trim() || !ig.value.trim()) {
+            return showError('Harap lengkapi nama, WhatsApp, dan Instagram.');
+        }
+        if (wa.value.length < 10) {
+            return showError('Nomor WhatsApp minimal 10 digit.');
+        }
+        if (ig.value.startsWith('@')) {
+            return showError('Jangan gunakan tanda "@" di awal username Instagram.');
+        }
+        showSection('bio1');
+    });
 
-  // Navigate backward
-  btnBack0.onclick = function () {
-    header.style.backgroundColor = 'transparent';
-    logonav.style.width = '60px';
-    listnav.style.margin = '20px';
-    listnav.style.alignItems = 'normal';
-    sectionMakeSure.style.display = 'flex';
-    sectionMakeSure.classList.remove('hidden');
-    sectionForm.classList.add('hidden');
-  };
-  btnBack1.onclick = function () {
-    sectionFormBio1.classList.add('hidden');
-    sectionFormBio0.classList.remove('hidden');
-  };
-  btnBack2.onclick = function () {
-    sectionFormPemesanan0.classList.add('hidden');
-    sectionFormBio1.classList.remove('hidden');
-  };
+    buttons.next.bio1?.addEventListener('click', () => {
+        const { rekening, bank } = inputs;
+        if (!rekening.value.trim() || !bank.value.trim()) {
+            return showError('Harap lengkapi nomor rekening dan nama bank.');
+        }
+        showSection('pesan0');
+    });
 
-  btnBack3.onclick = function () {
-    sectionFormPemesanan1.classList.add('hidden');
-    sectionFormPemesanan0.classList.remove('hidden');
-  };
+    buttons.next.pesan0?.addEventListener('click', () => {
+        const { tanggal, jam, orang } = inputs;
+        if (!tanggal.value || !jam.value || !orang.value) {
+            return showError('Harap lengkapi tanggal, jam, dan jumlah orang.');
+        }
+        if (parseInt(orang.value) <= 0) {
+            return showError('Jumlah orang harus lebih dari 0.');
+        }
+        showSection('pesan1');
+    });
 
-  btnBack4.onclick = function () {
-    sectionFormPemesanan2.classList.add('hidden');
-    sectionFormPemesanan1.classList.remove('hidden');
-  };
-  btnBack5.onclick = function () {
-    sectionFormPemesanan3.classList.add('hidden');
-    sectionFormPemesanan2.classList.remove('hidden');
-  };
+    buttons.next.pesan1?.addEventListener('click', () => {
+        showSection('pesan2');
+    });
+
+    buttons.next.pesan2?.addEventListener('click', () => {
+        showSection('pesan3');
+    });
+
+    // --- Navigasi Mundur ---
+    buttons.back.makeSure?.addEventListener('click', () => {
+        if (header) header.style.backgroundColor = 'transparent';
+        if (logonav) logonav.style.width = '60px';
+        if (listnav) {
+            listnav.style.margin = '20px';
+            listnav.style.alignItems = 'normal';
+        }
+        sectionMakeSure.style.display = 'flex';
+        sectionForm.classList.add('hidden');
+    });
+
+    buttons.back.bio1?.addEventListener('click', () => showSection('bio0'));
+    buttons.back.pesan0?.addEventListener('click', () => showSection('bio1'));
+    buttons.back.pesan1?.addEventListener('click', () => showSection('pesan0'));
+    buttons.back.pesan2?.addEventListener('click', () => showSection('pesan1'));
+    buttons.back.pesan3?.addEventListener('click', () => showSection('pesan2'));
 });
 
-function openModal(idModal) {
-  document.getElementById(idModal).style.display = 'block';
+// --- Modal Functions ---
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) modal.style.display = 'block';
 }
 
-function closeModal(idModal) {
-  document.getElementById(idModal).style.display = 'none';
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) modal.style.display = 'none';
 }
+
+// --- Tutup modal saat klik di luar konten ---
+document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal(modal.id);
+        }
+    });
+});
